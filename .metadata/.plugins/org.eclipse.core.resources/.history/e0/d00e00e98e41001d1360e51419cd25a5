@@ -1,0 +1,32 @@
+/*
+ * MC2.c
+ */ 
+
+#include "uart.h"
+int def=123;
+int main(void)
+{
+	uint16 key;
+	UART_init();
+	DDRB=0x0F;
+	DDRC=0x1F;
+	SET_BIT(PORTC,PC4);
+	while(1)
+    {
+		key = UART_recieveByte();
+		if (key==def){
+			SET_BIT(PORTB,PB1);
+			CLEAR_BIT(PORTB,PB4);
+			SET_BIT(PORTC,PC3);
+			_delay_ms(500);
+			CLEAR_BIT(PORTB,PB1);
+			_delay_ms(1000);
+			SET_BIT(PORTB,PB0);
+			_delay_ms(500);
+			CLEAR_BIT(PORTB,PB0);
+			CLEAR_BIT(PORTB,PB3);
+			SET_BIT(PORTC,PC4);
+		}
+
+    }
+}

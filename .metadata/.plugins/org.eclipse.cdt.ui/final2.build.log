@@ -1,0 +1,41 @@
+03:22:43 **** Incremental Build of configuration Debug for project final2 ****
+make all 
+Building file: ../MC2.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=1000000UL -MMD -MP -MF"MC2.d" -MT"MC2.o" -c -o "MC2.o" "../MC2.c"
+In file included from ../micro_config.h:22,
+                 from ../uart.h:16,
+                 from ../MC2.c:5:
+c:/winavr-20100110/lib/gcc/../../avr/include/util/delay.h:90:3: warning: #warning "Compiler optimizations disabled; functions from <util/delay.h> won't work as designed"
+../MC2.c: In function 'main':
+../MC2.c:30: warning: pointer targets in passing argument 1 of 'strcmp' differ in signedness
+../MC2.c:30: warning: pointer targets in passing argument 2 of 'strcmp' differ in signedness
+Finished building: ../MC2.c
+ 
+Building target: final2.elf
+Invoking: AVR C Linker
+avr-gcc -Wl,-Map,final2.map -mmcu=atmega16 -o "final2.elf"  ./MC2.o ./external_eeprom.o ./i2c.o ./uart.o   
+Finished building target: final2.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S final2.elf  >"final2.lss"
+Finished building: final2.lss
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega16 final2.elf
+AVR Memory Usage
+----------------
+Device: atmega16
+
+Program:    5248 bytes (32.0% Full)
+(.text + .data + .bootloader)
+
+Data:          8 bytes (0.8% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+
+03:22:43 Build Finished. 0 errors, 3 warnings. (took 596ms)
+

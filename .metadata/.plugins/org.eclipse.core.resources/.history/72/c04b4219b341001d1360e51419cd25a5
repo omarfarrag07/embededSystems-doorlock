@@ -1,0 +1,48 @@
+/*
+ * MC2.c
+ */ 
+
+#include "uart.h"
+int def=123;
+int main(void)
+{
+	uint16 key;
+	UART_init();
+	DDRB=0x0F;
+	DDRC=0x1F;
+	SET_BIT(PORTC,PC4);
+	uint8 def = 0
+
+		DDRD  = 0xFF;
+		PORTD = 0x00;
+		EEPROM_init();
+		EEPROM_writeByte(0x0311,1);/* Write 0x0F in the external EEPROM */
+		_delay_ms(10);
+		EEPROM_readByte(0x0311, &def);
+	while(1)
+    {
+		UART_receiveString(key);
+		if (key==def){
+			UART_sendByte(1);
+			key=UART_recieveByte();
+			if(key==1){
+			SET_BIT(PORTB,PB1);
+			CLEAR_BIT(PORTC,PC4);
+			SET_BIT(PORTC,PC3);
+			_delay_ms(500);
+			CLEAR_BIT(PORTB,PB1);
+			_delay_ms(1000);
+			SET_BIT(PORTB,PB0);
+			_delay_ms(500);
+			CLEAR_BIT(PORTB,PB0);
+			CLEAR_BIT(PORTC,PC3);
+			SET_BIT(PORTC,PC4);
+		}
+			else if(key==2){
+
+			}
+
+
+    }
+}
+}

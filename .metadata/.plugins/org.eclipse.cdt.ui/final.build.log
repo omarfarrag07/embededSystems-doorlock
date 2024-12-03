@@ -1,0 +1,46 @@
+03:42:26 **** Incremental Build of configuration Debug for project final ****
+make all 
+Building file: ../final.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=1000000UL -MMD -MP -MF"final.d" -MT"final.o" -c -o "final.o" "../final.c"
+In file included from ../micro_config.h:22,
+                 from ../keypad.h:17,
+                 from ../final.c:7:
+c:/winavr-20100110/lib/gcc/../../avr/include/util/delay.h:90:3: warning: #warning "Compiler optimizations disabled; functions from <util/delay.h> won't work as designed"
+../final.c: In function '__vector_9':
+../final.c:16: warning: implicit declaration of function 'LCD_clearScreen'
+../final.c:17: warning: implicit declaration of function 'LCD_displayString'
+../final.c: In function 'main':
+../final.c:30: warning: implicit declaration of function 'LCD_init'
+../final.c:31: warning: implicit declaration of function 'LCD_sendCommand'
+../final.c:68: warning: implicit declaration of function 'LCD_displayStringRowColumn'
+../final.c:98: warning: implicit declaration of function 'LCD_intgerToString'
+Finished building: ../final.c
+ 
+Building target: final.elf
+Invoking: AVR C Linker
+avr-gcc -Wl,-Map,final.map -mmcu=atmega16 -o "final.elf"  ./final.o ./keypad.o ./lcd.o ./uart.o   
+Finished building target: final.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S final.elf  >"final.lss"
+Finished building: final.lss
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega16 final.elf
+AVR Memory Usage
+----------------
+Device: atmega16
+
+Program:   12002 bytes (73.3% Full)
+(.text + .data + .bootloader)
+
+Data:        222 bytes (21.7% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+
+03:42:27 Build Finished. 0 errors, 7 warnings. (took 451ms)
+

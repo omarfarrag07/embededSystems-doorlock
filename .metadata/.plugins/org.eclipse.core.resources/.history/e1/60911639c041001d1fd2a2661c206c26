@@ -1,0 +1,54 @@
+/*
+ * final.c
+ *
+ *  Created on: Sep 30, 2022
+ *      Author: Omar
+ */
+#include "keypad.h"
+#include "uart.h"
+#include <string.h>
+
+int main(void)
+{
+	uint16 bot=0,i=0;
+    uint8 key[8];
+	UART_init();
+	LCD_init();
+	LCD_sendCommand(0x01);
+	LCD_displayString("*please enter your password*");
+	    	_delay_ms(1000);
+	    	LCD_clearScreen();
+
+    while(1)
+    {
+    	bot=KeyPad_getPressedKey();
+    	if(bot==12){
+    		UART_sendString(key);
+    		if(UART_recieveByte()==1){
+    		    		    		LCD_displayString("correct password");
+    		    		    		_delay_ms(500);
+    		    		    		LCD_clearScreen();
+    		    		    		LCD_displayString("1-open the door");
+    		    		    		LCD_displayStringRowColumn(1,0,"2-change password");
+    		    		    		bot=KeyPad_getPressedKey();
+    		    		    		UART_sendByte(bot);
+
+    		    		    	}
+    		else{
+    			LCD_displayString("incorrect password");
+    			    		    		    		_delay_ms(500);
+    			    		    		    		LCD_clearScreen();
+    		}
+    	}
+    	else{
+
+    		key[i++]=bot;
+    		LCD_intgerToString(bot);
+    	}
+
+    	 //get the pressed key
+    //send the pressed key to the second MC using uart*/
+		_delay_ms(500);
+    }
+}
+
